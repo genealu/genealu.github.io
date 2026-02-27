@@ -1,16 +1,10 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>GeneaLu — Portuguese Genealogy</title>
-
-  <!-- Brand colors -->
-  <meta name="theme-color" content="#0D2A4A" />
-
-  <!-- Favicon / icon placeholders (replace with your own if you wish) -->
-  favicon.ico
-  icon_256_circle.png
+  <meta name="theme-color" content="#0D2A4A"/>
 
   <style>
     :root{
@@ -22,15 +16,15 @@
       --card:#ffffff;     /* panels */
       --line:#cbd5e1;     /* borders */
     }
-    /* Base layout */
     body{margin:0;font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--ink)}
     header{background:linear-gradient(135deg,var(--brand),#0a1e35);color:#fff;padding:28px 18px}
     .wrap{max-width:1100px;margin:0 auto;padding:0 18px}
     .head{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
-    .logo img{max-width:320px;height:auto;display:block}
+    .logo{font-weight:900;font-size:20px;letter-spacing:.5px}
     .lang{display:flex;gap:8px;flex-wrap:wrap}
     .lang button{border:1px solid rgba(255,255,255,.4);background:rgba(255,255,255,.12);color:#fff;padding:6px 10px;border-radius:10px;cursor:pointer;font-weight:800}
     .lang button.active{background:#fff;color:var(--brand);border-color:#fff}
+
     main{padding:22px 0}
     .section{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;box-shadow:0 2px 10px rgba(2,6,23,.05);margin-bottom:16px}
     h1{margin:0 0 8px;font-size:28px}
@@ -38,20 +32,16 @@
     h3{margin:0 0 6px;color:var(--brand)}
     p{margin:8px 0;line-height:1.55}
     ul{margin:8px 0 8px 20px}
-    a{color:var(--brand)}
+    a{color:var(--brand);text-decoration:underline}
     a.btn{display:inline-block;background:var(--brand);color:#fff;text-decoration:none;padding:12px 14px;border-radius:12px;font-weight:900;border:2px solid var(--accent)}
-    .badge{display:inline-block;background:var(--accent);color:#fff;padding:2px 8px;border-radius:999px;font-size:12px;font-weight:800}
 
-    /* Simple grid */
     .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}
     .col-6{grid-column:span 6}
     .col-12{grid-column:span 12}
     @media (max-width: 900px){.col-6{grid-column:span 12}}
 
-    /* Boxes */
     .reqBox{border:1px solid var(--line);background:#f8fafc;border-radius:12px;padding:12px 14px}
     .reqBox h3{margin:0 0 6px;font-size:16px;color:var(--brand)}
-    .highlight{border-top:4px solid var(--accent)}
     .accentTitle{color:var(--brand);border-left:4px solid var(--accent);padding-left:10px}
 
     footer{text-align:center;color:var(--muted);font-size:13px;padding:22px 18px}
@@ -60,14 +50,15 @@
 
   <script>
     function setLang(l){
-      document.querySelectorAll('.pane').forEach(function(e){e.style.display='none'});
-      var pane = document.getElementById('pane-'+l);
-      if (pane) pane.style.display='block';
-      document.querySelectorAll('.lang button').forEach(function(b){b.classList.toggle('active', b.dataset.lang===l)});
+      document.querySelectorAll('.pane').forEach(e=>e.style.display='none');
+      const pane=document.getElementById('pane-'+l);
+      if(pane) pane.style.display='block';
+      document.querySelectorAll('.lang button').forEach(b=>b.classList.toggle('active', b.dataset.lang===l));
       localStorage.setItem('genealu_lang', l);
+      document.documentElement.lang = l;
     }
     window.addEventListener('DOMContentLoaded', function(){
-      var saved = localStorage.getItem('genealu_lang') || 'en';
+      const saved = localStorage.getItem('genealu_lang') || 'en';
       setLang(saved);
     });
   </script>
@@ -76,11 +67,8 @@
 
 <header>
   <div class="wrap head">
-    <div class="logo">
-      <!-- If you have your PNG/SVG logo file, replace the src below -->
-      icon_256_circle.png
-    </div>
-    <div class="lang">
+    <div class="logo">GeneaLu</div>
+    <div class="lang" aria-label="Language selector">
       <button data-lang="en" onclick="setLang('en')" class="active">EN</button>
       <button data-lang="pt" onclick="setLang('pt')">PT</button>
       <button data-lang="fr" onclick="setLang('fr')">FR</button>
@@ -91,256 +79,5 @@
 
 <main class="wrap">
 
-  <!-- ================= ENGLISH ================= -->
-  <section id="pane-en" class="pane" style="display:none">
-    <div class="section">
-      <h1>GeneaLu — Portuguese Genealogy</h1>
-      <span class="badge">EU‑based • Portugal focus</span>
-      <p class="accentTitle">Evidence‑based Portuguese family history research, with sourced trees and documented findings.</p>
-    </div>
-
-    <div class="section">
-      <h2>About Me</h2>
-      <p>I’m Lúcia Fernandes (GeneaLu), a Portuguese genealogy researcher with over 30 years of experience working with parish, civil, and archival records. I provide documented, evidence‑based research and build sourced family trees for clients worldwide. I hold a diploma in Family History Research (BYU Idaho, USA) and <strong>I worked for FamilySearch International</strong>.</p>
-      <ul>
-        <li>Member of the Associação Portuguesa de Genealogia (Portuguese Genealogical Society)</li>
-        <li>Member of the Associação dos Amigos da Torre do Tombo (Portuguese National Archive), no. 219</li>
-        <li>Speaker at <strong>RootsTech by FamilySearch</strong></li>
-      </ul>
-      <p><strong>LinkedIn:</strong>
-        https://www.linkedin.com/in/luciafernandesgenealulinkedin.com/in/luciafernandesgenealu</a>
-      </p>
-    </div>
-
-    <div class="grid">
-      <div class="section col-6">
-        <h2>Deliverables</h2>
-        <ul>
-          <li>All findings, sources, citations, and notes added to your digital tree/software</li>
-          <li>Optional on request: written research report and research log</li>
-          <li>GEDCOM export if needed</li>
-        </ul>
-      </div>
-      <div class="section col-6">
-        <h2>Pricing</h2>
-        <ul>
-          <li>€80/hour</li>
-          <li>5‑hour package: €360</li>
-          <li>10‑hour package: €700</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="grid">
-      <div class="section col-6">
-        <h2>Contact</h2>
-        <p>Email: mailto:genealu4u@gmail.comgenealu4u@gmail.com</a></p>
-      </div>
-      <div class="section col-6">
-        <div class="reqBox">
-          <h3>Requirements</h3>
-          <p>To request a research plan, please include:</p>
-          <ul>
-            <li>Client contact details</li>
-            <li>A clear research question/objective (name, approximate date, place, relationship)</li>
-            <li>Background genealogical information</li>
-            <li>Sources already consulted (even negative results)</li>
-            <li>Copies of available documents</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ================= PORTUGUÊS ================= -->
-  <section id="pane-pt" class="pane" style="display:none">
-    <div class="section">
-      <h1>GeneaLu — Genealogia Portuguesa</h1>
-      <span class="badge">Sede na UE • Foco em Portugal</span>
-      <p class="accentTitle">Investigação genealógica portuguesa baseada em evidências, com árvores devidamente citadas e resultados documentados.</p>
-    </div>
-
-    <div class="section">
-      <h2>Sobre mim</h2>
-      <p>Sou a Lúcia Fernandes (GeneaLu), investigadora de genealogia portuguesa com mais de 30 anos de experiência em registos paroquiais, civis e arquivísticos. Realizo investigação documentada e baseada em evidências e construo árvores familiares com fontes para clientes em todo o mundo. Sou titular de um diploma em Family History Research (BYU Idaho, EUA) e trabalhei na FamilySearch International.</p>
-      <ul>
-        <li>Membro da Associação Portuguesa de Genealogia</li>
-        <li>Membro da Associação dos Amigos da Torre do Tombo (Arquivo Nacional), n.º 219</li>
-        <li>Palestrante no <strong>RootsTech by FamilySearch</strong></li>
-      </ul>
-      <p><strong>LinkedIn:</strong>
-        https://www.linkedin.com/in/luciafernandesgenealulinkedin.com/in/luciafernandesgenealu</a>
-      </p>
-    </div>
-
-    <div class="grid">
-      <div class="section col-6">
-        <h2>Entregáveis</h2>
-        <ul>
-          <li>Resultados, fontes, citações e notas inseridos na sua árvore/software digital</li>
-          <li>Relatório escrito e registo de pesquisa opcionais (quando solicitado)</li>
-          <li>Exportação GEDCOM, se necessário</li>
-        </ul>
-      </div>
-      <div class="section col-6">
-        <h2>Preços</h2>
-        <ul>
-          <li>€80/hora</li>
-          <li>Pacote 5 horas: €360</li>
-          <li>Pacote 10 horas: €700</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="grid">
-      <div class="section col-6">
-        <h2>Contacto</h2>
-        <p>Email: mailto:genealu4u@gmail.comgenealu4u@gmail.com</a></p>
-      </div>
-      <div class="section col-6">
-        <div class="reqBox">
-          <h3>Requisitos</h3>
-          <p>Para solicitar um plano de pesquisa, inclua:</p>
-          <ul>
-            <li>Dados de contacto do cliente</li>
-            <li>Uma pergunta/objetivo claro de investigação (nome, data aproximada, local, parentesco)</li>
-            <li>Informação genealógica de contexto</li>
-            <li>Fontes já consultadas (incluindo resultados negativos)</li>
-            <li>Cópias dos documentos disponíveis</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ================= FRANÇAIS ================= -->
-  <section id="pane-fr" class="pane" style="display:none">
-    <div class="section">
-      <h1>GeneaLu — Généalogie portugaise</h1>
-      <span class="badge">Basée dans l’UE • Spécialiste du Portugal</span>
-      <p class="accentTitle">Recherche généalogique portugaise fondée sur des preuves, avec arbres sourcés et résultats documentés.</p>
-    </div>
-
-    <div class="section">
-      <h2>À propos de moi</h2>
-      <p>Je suis Lúcia Fernandes (GeneaLu), chercheuse en généalogie portugaise avec plus de 30 ans d’expérience dans les registres paroissiaux, civils et d’archives. Je fournis des recherches documentées et fondées sur des preuves, et je crée des arbres généalogiques sourcés pour des clients du monde entier. Je suis titulaire d’un diplôme en Family History Research (BYU Idaho, États‑Unis) et <strong>j’ai travaillé pour FamilySearch International</strong>.</p>
-      <ul>
-        <li>Membre de l’Associação Portuguesa de Genealogia (Société Portugaise de Généalogie)</li>
-        <li>Membre de l’Associação dos Amigos da Torre do Tombo (Archives nationales du Portugal), n° 219</li>
-        <li>Conférencière à <strong>RootsTech by FamilySearch</strong></li>
-      </ul>
-      <p><strong>LinkedIn :</strong>
-        https://www.linkedin.com/in/luciafernandesgenealulinkedin.com/in/luciafernandesgenealu</a>
-      </p>
-    </div>
-
-    <div class="grid">
-      <div class="section col-6">
-        <h2>Livrables</h2>
-        <ul>
-          <li>Toutes les découvertes, sources, citations et notes ajoutées à votre arbre/logiciel</li>
-          <li>Rapport écrit et journal de recherche (en option, sur demande)</li>
-          <li>Export GEDCOM si nécessaire</li>
-        </ul>
-      </div>
-      <div class="section col-6">
-        <h2>Tarifs</h2>
-        <ul>
-          <li>80 € / heure</li>
-          <li>Forfait 5 heures : 360 €</li>
-          <li>Forfait 10 heures : 700 €</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="grid">
-      <div class="section col-6">
-        <h2>Contact</h2>
-        <p>Email : mailto:genealu4u@gmail.comgenealu4u@gmail.com</a></p>
-      </div>
-      <div class="section col-6">
-        <div class="reqBox">
-          <h3>Exigences</h3>
-          <p>Pour demander un plan de recherche, veuillez inclure :</p>
-          <ul>
-            <li>Coordonnées du client</li>
-            <li>Une question/objectif de recherche clair (nom, date approximative, lieu, lien)</li>
-            <li>Informations généalogiques de contexte</li>
-            <li>Sources déjà consultées (y compris les résultats négatifs)</li>
-            <li>Copies des documents disponibles</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ================= ESPAÑOL ================= -->
-  <section id="pane-es" class="pane" style="display:none">
-    <div class="section">
-      <h1>GeneaLu — Genealogía portuguesa</h1>
-      <span class="badge">Con sede en la UE • Enfoque en Portugal</span>
-      <p class="accentTitle">Investigación genealógica portuguesa basada en evidencias, con árboles con fuentes y resultados documentados.</p>
-    </div>
-
-    <div class="section">
-      <h2>Sobre mí</h2>
-      <p>Soy Lúcia Fernandes (GeneaLu), investigadora de genealogía portuguesa con más de 30 años de experiencia en registros parroquiales, civiles y de archivos. Realizo investigación documentada y basada en evidencias, y construyo árboles familiares con fuentes para clientes de todo el mundo. Poseo un diploma en Family History Research (BYU Idaho, EE. UU.) y trabajé para FamilySearch International.</p>
-      <ul>
-        <li>Miembro de la Associação Portuguesa de Genealogia</li>
-        <li>Miembro de la Associação dos Amigos da Torre do Tombo (Archivo Nacional de Portugal), n.º 219</li>
-        <li>Ponente en <strong>RootsTech by FamilySearch</strong></li>
-      </ul>
-      <p><strong>LinkedIn:</strong>
-        https://www.linkedin.com/in/luciafernandesgenealulinkedin.com/in/luciafernandesgenealu</a>
-      </p>
-    </div>
-
-    <div class="grid">
-      <div class="section col-6">
-        <h2>Entregables</h2>
-        <ul>
-          <li>Todos los hallazgos, fuentes, citas y notas añadidos a su árbol/soft­ware digital</li>
-          <li>Informe escrito y registro de investigación opcionales (si se solicitan)</li>
-          <li>Exportación GEDCOM si es necesario</li>
-        </ul>
-      </div>
-      <div class="section col-6">
-        <h2>Precios</h2>
-        <ul>
-          <li>80 € / hora</li>
-          <li>Paquete de 5 horas: 360 €</li>
-          <li>Paquete de 10 horas: 700 €</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="grid">
-      <div class="section col-6">
-        <h2>Contacto</h2>
-        <p>Email: mailto:genealu4u@gmail.comgenealu4u@gmail.com</a></p>
-      </div>
-      <div class="section col-6">
-        <div class="reqBox">
-          <h3>Requisitos</h3>
-          <p>Para solicitar un plan de investigación, incluya:</p>
-          <ul>
-            <li>Datos de contacto del cliente</li>
-            <li>Una pregunta/objetivo claro de investigación (nombre, fecha aproximada, lugar, parentesco)</li>
-            <li>Información genealógica de contexto</li>
-            <li>Fuentes ya consultadas (incluso resultados negativos)</li>
-            <li>Copias de los documentos disponibles</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-</main>
-
-<footer>
-  <div>© 2026 GeneaLu — Lúcia Fernandes</div>
-  <div class="line">Email: mailto:genealu4u@gmail.comgenealu4u@gmail.com</a></div>
-</footer>
-
-</body>
-</html>
+  <!-- =============== ENGLISH =============== -->
+  <section id="pane-en" class
